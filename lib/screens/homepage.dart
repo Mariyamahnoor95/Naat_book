@@ -23,9 +23,8 @@ BgImage(),
           Center(
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 170),
-              child: GestureDetector(
-                onTap:  (() => Navigator.pushNamed(context, MyRoutes.listPage)),
-                  child: Sections()),
+
+              child: Sections(),
             ),
           ),
         ],

@@ -26,9 +26,10 @@ class MyApp extends StatelessWidget {
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
       debugShowCheckedModeBanner: false,
+      initialRoute: MyRoutes.homePage,
       routes: {
         MyRoutes.homePage:(context)=>const MyHomePage(),
-        MyRoutes.listPage:(context)=>const ListScreen(),
+        // MyRoutes.listPage:(context)=>const ListScreen(),
         MyRoutes.Favorites:(context)=> const Favorites(),
         MyRoutes.nooriBook:(context)=>  NooriNaatPage(),
 

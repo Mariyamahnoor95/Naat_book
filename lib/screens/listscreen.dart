@@ -7,7 +7,8 @@ import '../widgets/KalamWidget.dart';
 import '../widgets/routes.dart';
 
 class ListScreen extends StatefulWidget {
-  const ListScreen({Key? key}) : super(key: key);
+  ListScreen({Key? key, required this.listTitle}) : super(key: key);
+  final String listTitle;
 
   @override
   State<ListScreen> createState() => _ListScreenState();
@@ -21,11 +22,23 @@ class _ListScreenState extends State<ListScreen> {
   }
 
   loadData() async {
-    await Future.delayed(Duration(seconds: 2),);
-    final kalaamJson = await rootBundle.loadString("assets/files/kalaam.json"); //load string from kalam json
+    final String selectedData;
+
+    await Future.delayed(const Duration(seconds: 2),);
+    if(widget.listTitle == "حمد"){
+      selectedData = "assets/files/kalaam.json";
+    }
+    else{
+      selectedData = "assets/files/kalaam.json";
+    }
+    final kalaamJson = await rootBundle.loadString(selectedData); //load string from kalam json
     final decodedkalaam = jsonDecode(kalaamJson)  ;
-    var kalamList = decodedkalaam["kalaam"] as List ;
-    KalamCatalog.kalaams =List.from(kalamList).map<Kalaam>((item) => Kalaam.fromJson(item)).toList();
+    if(widget.listTitle == "حمد"){
+    var kalamList = decodedkalaam["Hamd"] as List ;
+    KalamCatalog.kalaams =List.from(kalamList).map<Kalaam>((item) => Kalaam.fromJson(item)).toList();}
+    else if(widget.listTitle == "نعت"){
+      var kalamList = decodedkalaam["Naat"] as List ;
+      KalamCatalog.kalaams =List.from(kalamList).map<Kalaam>((item) => Kalaam.fromJson(item)).toList();}
 
     setState(() {});
   //
@@ -36,10 +49,9 @@ class _ListScreenState extends State<ListScreen> {
     return Scaffold(
 
       appBar: AppBar(
-
         centerTitle: true,
-        titleTextStyle: TextStyle(fontSize: 25, ),
-        title: const Text(" حمد فہرست ", ),
+        titleTextStyle: const TextStyle(fontSize: 25, ),
+        title:  Text(" ${widget.listTitle} فہرست ", ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -61,9 +73,10 @@ class _ListScreenState extends State<ListScreen> {
           children: [
             DrawerHeader(
               decoration: BoxDecoration(color: MyTheme.greenColor,),
-                child: const Text("NOORI NAATAIN", style: TextStyle(color: Colors.white54, ),)),
+                child: const Text("NOORI NAATAIN", style: TextStyle(color: Colors.white54,
+                    fontSize: 22, fontWeight: FontWeight.bold ),)),
             ListTile(
-              leading: Icon(Icons.star),
+              leading: const Icon(Icons.star),
                 title: const Text("Favorites", style: TextStyle(fontSize: 20),),
             onTap: (() => Navigator.pushNamed(context, MyRoutes.Favorites,))),
             ListTile(
