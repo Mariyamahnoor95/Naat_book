@@ -15,15 +15,13 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Stack(
         fit: StackFit.expand,
-        children: [
-BgImage(),
+        children: const [
+          BgImage(),
           Center(
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 170),
-
+              padding: EdgeInsets.symmetric(vertical: 170),
               child: Sections(),
             ),
           ),
@@ -32,4 +30,3 @@ BgImage(),
     );
   }
 }
-

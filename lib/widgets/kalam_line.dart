@@ -21,8 +21,9 @@ class KalamLine extends StatelessWidget {
       Container(
         child:AutoSizeText(
           text,
-          style: const TextStyle(
+          style:  TextStyle(
           fontSize: 25,
+              color: Theme.of(context).primaryColor
           ),
         textAlign: TextAlign.center,) ,
       ): null

@@ -9,7 +9,7 @@ class Favorites extends StatelessWidget {
         title: Text("favorites"),
 
       ),
-      body: Center(
+      body: const Center(
         child: Text("favorites kalam"),
       ),
     );

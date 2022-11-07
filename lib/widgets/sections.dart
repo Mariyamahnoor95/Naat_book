@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:name_country/screens/listscreen.dart';
+import 'package:name_country/screens/list_screen.dart';
 import 'package:name_country/widgets/routes.dart';
 import 'package:name_country/widgets/theme.dart';
 
