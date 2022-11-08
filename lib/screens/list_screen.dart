@@ -65,7 +65,7 @@ class _ListScreenState extends State<ListScreen> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+        padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 4.0),
         child: (KalamCatalog.kalaams != null && KalamCatalog.kalaams.isNotEmpty)
             ? ListView.builder(
                 itemCount: KalamCatalog.kalaams.length,

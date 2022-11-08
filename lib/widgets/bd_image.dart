@@ -6,8 +6,8 @@ class BgImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Image.asset("assets/images/frame.jpg", fit: BoxFit.fill,
-      color: Colors.teal.withOpacity(0.3),
-      colorBlendMode: BlendMode.darken,
+      color: Colors.teal.withOpacity(0.4),
+      colorBlendMode: BlendMode.color,
     );
   }
 }

@@ -14,7 +14,7 @@ class MyTheme{
        // textTheme: CyrillicFonts.robotoCondensedTextTheme(
        //  Theme.of(context).textTheme,),
        //GoogleFonts.notoNastaliqUrduTextTheme
-       textTheme: GoogleFonts.notoNaskhArabicTextTheme(Theme.of(context).textTheme),//Nastaliq Urdu
+       textTheme: GoogleFonts.notoNastaliqUrduTextTheme(Theme.of(context).textTheme),//Nastaliq Urdu
        primaryColor: const Color(0xff000000),
         appBarTheme: const AppBarTheme(
           elevation: 0.0,
@@ -31,7 +31,7 @@ class MyTheme{
       // brightness: Brightness.dark,
       textTheme: GoogleFonts.notoNaskhArabicTextTheme(Theme.of(context).textTheme),
       cardColor:  darkgreyColor,
-     scaffoldBackgroundColor:Colors.black,
+     scaffoldBackgroundColor:Color(0xff1f251f),
       primaryColor: Color(0xffffffff),
 
       indicatorColor:const Color(0xff3b925a) ,//Nastaliq Urdu
@@ -39,7 +39,7 @@ class MyTheme{
           elevation: 0.0,
           iconTheme: IconThemeData(color: Colors.white),
           color: Color(0xFF006064),
-          titleTextStyle: TextStyle(color: Colors.white)
+          // titleTextStyle: TextStyle(color: Colors.white)
           // titleTextStyle: TextStyle(color: Color(0xff3b925a))
 
       ),

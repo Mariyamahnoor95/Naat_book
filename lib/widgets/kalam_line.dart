@@ -14,7 +14,7 @@ class KalamLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 4),
+
       color: color,
       height: (height == null) ? 50 : height,
       child: (text != null)?
@@ -22,7 +22,8 @@ class KalamLine extends StatelessWidget {
         child:AutoSizeText(
           text,
           style:  TextStyle(
-          fontSize: 25,
+          fontSize: 40,
+              fontWeight: FontWeight.bold,
               color: Theme.of(context).primaryColor
           ),
         textAlign: TextAlign.center,) ,

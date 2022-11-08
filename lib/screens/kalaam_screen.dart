@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:name_country/widgets/bd_image.dart';
 import '../models/kalaam.dart';
 import '../widgets/kalam_line.dart';
@@ -23,152 +24,185 @@ class _KalamScreenState extends State<KalamScreen> {
   bool _alreadyfav = false;
   PageController _controller = PageController();
 
-  print(_favKalam) {
-    // TODO: implement print
-    throw UnimplementedError();
-  }
-
-  @override
-  void initState() {
-    _alreadyfav = _favKalam.contains(widget.kalam);
-    super.initState();
-  }
+  // print(_favKalam) {
+  //   // TODO: implement print
+  //   throw UnimplementedError();
+  // }
 
   @override
   Widget build(BuildContext context) {
-    return PageView.builder(
-      reverse: true,
-      scrollDirection: Axis.horizontal,
-      controller: _controller,
-      itemBuilder: (BuildContext context, index) {
-        var kalaamListItem = widget.kalaamList[index];
-        return Scaffold(
-          appBar: AppBar(
-            centerTitle: true,
-            elevation: 0.0,
-            title: Text(
-              kalaamListItem.type,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 28,
-
-                // color: kTextPrimaryColor
-              ),
-              textAlign: TextAlign.start,
-            ),
-            actions: [
-              IconButton(
-                onPressed: () {
-                  setState(() {
-                    if (_alreadyfav) {
-                      _favKalam.remove(kalaamListItem);
-                    } else {
-                      _favKalam.add(kalaamListItem);
-                    }
-                  });
-                },
-                icon: Icon(
-                  _alreadyfav ? Icons.star : Icons.star_border,
-                  color: _alreadyfav ? Colors.red : null,
-                ),
-              )
-            ],
-          ),
-          body: Column(
+    var kalaamItem = widget.kalam;
+    // var kalaamListItem = widget.kalaamList[index];
+    _alreadyfav = _favKalam.contains(widget.kalam);
+    return Scaffold(
+      // appBar: AppBar(
+      //   centerTitle: true,
+      //   elevation: 0.0,
+      //
+      //   title: Text(
+      //       kalaamItem.type,
+      //     style: const TextStyle(
+      //       fontWeight: FontWeight.bold,
+      //       fontSize: 28,
+      //
+      //
+      //       // color: kTextPrimaryColor
+      //     ),
+      //     textAlign: TextAlign.start,
+      //   ),
+      //   actions: [
+      //     IconButton(
+      //         onPressed: () {
+      //           setState(() {
+      //             if (_alreadyfav) {
+      //               _favKalam.remove(kalaamItem);
+      //             } else {
+      //               _favKalam.add(kalaamItem);
+      //             }
+      //           });
+      //         },
+      //         icon: Icon(_alreadyfav ? Icons.star : Icons.star_border,
+      //             color: _alreadyfav ? Colors.red : null))
+      //   ],
+      // ),
+      body: Container(
+        child: SafeArea(
+          child: Stack(
+              fit: StackFit.expand,
             children: [
-              _buildKalamHeading(
-                kalaamListItem.type,
-                kalaamListItem.subject,
-                kalaamListItem.poet,
-                context,
-              ),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: kalaamListItem.lines.length,
-                  itemBuilder: (BuildContext context, kalamLineIndex) {
-                    return KalamLine(
-                      height: 35,
-                      text: kalaamListItem.lines[kalamLineIndex],
-                      color: Colors.transparent,
-                    );
-                  },
-                ),
+              Column(
+                children: [
+
+                  _buildKalamHeading(kalaamItem.type, kalaamItem.subject,
+                      kalaamItem.poet, context),
+
+                  Expanded(
+                      child: Container(
+                        padding: EdgeInsets.only(top: 12.0),
+                        decoration: BoxDecoration(
+                          border: Border(left: BorderSide(width: 10.0, color: Color(0xFF006064)),
+                              right: BorderSide(width: 10.0, color: Color(0xFF006064))),),
+                        child: ListView.builder(
+                            itemCount: kalaamItem.lines.length,
+                            itemBuilder: (BuildContext context, index) {
+                              return KalamLine(
+                                height: 40,
+                                text: kalaamItem.lines[index],
+                                color: Colors.transparent,
+                              );
+                            },
+    ),
+                      ),
+    )
+                ],
               ),
             ],
           ),
-        );
-      },
-    );
-    /*return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        elevation: 0.0,
-        title: Text(
-          widget.kalam.type,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 28,
-
-            // color: kTextPrimaryColor
-          ),
-          textAlign: TextAlign.start,
         ),
-        actions: [
-          IconButton(
-              onPressed: () {
-                setState(() {
-                  if (_alreadyfav) {
-                    _favKalam.remove(widget.kalam);
-                  } else {
-                    _favKalam.add(widget.kalam);
-                  }
-                });
-              },
-              icon: Icon(_alreadyfav ? Icons.star : Icons.star_border,
-                  color: _alreadyfav ? Colors.red : null))
-        ],
       ),
-      body: Column(
-        children: [
-          _buildKalamHeading(widget.kalam.type, widget.kalam.subject,
-              widget.kalam.poet, context),
-          Expanded(
-              child: ListView.builder(
-                  itemCount: widget.kalam.lines.length,
-                  itemBuilder: (BuildContext context, index) {
-                    return KalamLine(
-                      height: 35,
-                      text: widget.kalam.lines[index],
-                      color: Colors.transparent,
-                    );
-                  }))
-        ],
-      ),
-    );*/
+    );
+    }
   }
+
+
+Widget _title_Background(BuildContext context){
+  return Container(
+    width: MediaQuery.of(context).size.width,
+    height: 100,
+    decoration: BoxDecoration(
+
+        image: DecorationImage(
+        colorFilter: ColorFilter.mode( Color(0xFF006064).withOpacity(0.9), BlendMode.color),
+        fit: BoxFit.fill,image: AssetImage("assets/images/title_frame4.jpg"))),
+  );
 }
 
 Widget _buildKalamHeading(
     String type, String subject, String poet, BuildContext context) {
-  return Container(
-    color: Colors.transparent,
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        AutoSizeText(
-          subject,
-          style: TextStyle(fontSize: 24, color: Theme.of(context).primaryColor),
-          textAlign: TextAlign.center,
+  return Stack(
+    children: [
+      _title_Background(context),
+      Container(
+        padding: EdgeInsets.only(top: 6.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+
+            AutoSizeText(
+              type +" "+ subject,
+              style: TextStyle(fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: MyTheme.greenColor,),
+              textAlign: TextAlign.center,
+            ),
+            AutoSizeText(
+              poet,
+              style: TextStyle(fontSize: 16,color: MyTheme.greenColor,),
+              textAlign: TextAlign.center,
+            ),
+
+
+          ],
         ),
-        AutoSizeText(
-          poet,
-          style: TextStyle(fontSize: 16, color: Theme.of(context).primaryColor),
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(
-          height: 16.0,
-        )
-      ],
-    ),
+      ),
+    ],
   );
 }
+
+//     return Scaffold(
+//       appBar: AppBar(
+//         centerTitle: true,
+//         elevation: 0.0,
+//         title: Text(
+//           kalaamItem.type,
+//           style: const TextStyle(
+//             fontWeight: FontWeight.bold,
+//             fontSize: 28,
+//
+//             // color: kTextPrimaryColor
+//           ),
+//           textAlign: TextAlign.start,
+//         ),
+//         actions: [
+//           IconButton(
+//             onPressed: () {
+//               setState(() {
+//                 if (_alreadyfav) {
+//                   _favKalam.remove(kalaamItem);
+//                 } else {
+//                   _favKalam.add(kalaamItem);
+//                 }
+//               });
+//             },
+//             icon: Icon(
+//               _alreadyfav ? Icons.star : Icons.star_border,
+//               color: _alreadyfav ? Colors.red : null,
+//             ),
+//           )
+//         ],
+//       ),
+//       body: Column(
+//         children: [
+//           _buildKalamHeading(
+//             kalaamItem.type,
+//             kalaamItem.subject,
+//             kalaamItem.poet,
+//             context,
+//           ),
+//           Expanded(
+//             child: ListView.builder(
+//               itemCount: kalaamItem.lines.length,
+//               itemBuilder: (BuildContext context, kalamLineIndex) {
+//                 return KalamLine(
+//                   height: 35,
+//                   text: kalaamItem.lines[kalamLineIndex],
+//                   color: Colors.transparent,
+//                 );
+//               },
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   },
+// );

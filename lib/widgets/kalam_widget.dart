@@ -31,17 +31,22 @@ class KalamWidget extends StatelessWidget {
         ),
         style: ListTileStyle.list,
         trailing: Container(
-          margin: const EdgeInsets.all(8.0),
-          padding: const EdgeInsets.all(8.0),
+            height: 35,
+            width: 35,
+          padding: const EdgeInsets.only(bottom: 8.0),
           decoration: BoxDecoration(
             color: MyTheme.greenColor,
-            shape: BoxShape.circle,
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(17),
+              bottomLeft: Radius.circular(17)
+            )
           ),
           child: Text(
             "$itemNum",
             textAlign: TextAlign.center,
+
             style: const TextStyle(
-              color: Colors.white,
+              color: Colors.white,fontSize: 13,
             ),
           ),
         ),

@@ -47,19 +47,18 @@ class _NooriNaatPageState extends State<NooriNaatPage> {
         fit: StackFit.expand,
         children: [
           BgImage(),
-          // PageView.builder(
-          //   reverse: true,
-          //   scrollDirection: Axis.horizontal,
-          //   controller: _controller,
-          //   itemBuilder: (BuildContext context, index) {
-          //     return
-          KalamScreen(
-            kalam: KalamCatalog.kalaams[0],
+          PageView.builder(
+            reverse: true,
+            scrollDirection: Axis.horizontal,
+            controller: _controller,
+            itemBuilder: (BuildContext context, index) {
+              return KalamScreen(
+            kalam: KalamCatalog.kalaams[index],
             kalaamList: KalamCatalog.kalaams,
-          ),
-          // );
-          //   },
-          // )
+          );
+
+            },
+          )
         ],
       ),
     );
